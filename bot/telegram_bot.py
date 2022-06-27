@@ -66,8 +66,3 @@ class TelegramBot(BotInterface):
         files = {"photo": open(image_path, "rb")}
         response = requests.post(url, files=files)
         return response.json()
-
-
-if __name__ == "__main__":
-    bot = TelegramBot("5060818686:AAHwIPedGOJHS9eqhh_lkDxhJsik4YTM9iQ", "1105713092")
-    bot.send_message("Hello")
