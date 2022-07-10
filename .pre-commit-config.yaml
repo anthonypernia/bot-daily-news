@@ -18,7 +18,6 @@ repos:
       - id: check-json
       - id: detect-private-key
       - id: check-yaml
-      - id: end-of-file-fixer
       - id: check-shebang-scripts-are-executable
 
   - repo: local
