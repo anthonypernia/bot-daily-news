@@ -12,12 +12,13 @@ repos:
       - id: isort
         args: ["--profile", "black", "--filter-files"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.2.0
+    rev: v4.3.0
     hooks:
       - id: check-added-large-files
       - id: check-json
       - id: detect-private-key
       - id: check-yaml
+      - id: end-of-file-fixer
       - id: check-shebang-scripts-are-executable
 
   - repo: local
