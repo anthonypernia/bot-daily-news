@@ -1,1 +1,6 @@
 requests
+mypy
+black
+isort
+pylint
+pre-commit
