@@ -1,5 +1,3 @@
-#run pre-commit checks on pull requests if pre-commit ends ok, the pull request will be merged 
-#token is in TOKEN_GIT
 on:
   push:
     branches:
@@ -21,6 +19,7 @@ jobs:
         run: pre-commit run #--all-files
       - name: Merge to main
         uses: peter-evans/create-pull-request@v3
+        if: success()
         with:
           token: ${{ secrets.TOKEN_GIT }}
           commit-message: Merge to main
