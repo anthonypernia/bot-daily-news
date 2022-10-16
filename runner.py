@@ -1,6 +1,5 @@
 """ runner """
 import argparse
-from ast import arg
 
 from notifier.bot.telegram_bot import TelegramBot
 from notifier.news_notificator import NewsNotificator
@@ -24,7 +23,7 @@ def run(args: argparse.Namespace):
     """
     bot = TelegramBot(args.bot_token, args.chat_id)
     news_notificator = NewsNotificator(bot)
-    if args.handle_messages in ['1', 1]:
+    if args.handle_messages in ["1", 1]:
         news_notificator.suscribe_updates()
     else:
         news_notificator.news_process()

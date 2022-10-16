@@ -43,7 +43,7 @@ class NewsApiHandler:
         Returns:
             list: list of news
         """
-        response = requests.get(self.url, params=self.args)  # type: ignore
+        response = requests.get(self.url, params=self.args, timeout=10)  # type: ignore
         return response.json()["articles"]
 
     def get_news_by_category(self, category: str) -> list:
