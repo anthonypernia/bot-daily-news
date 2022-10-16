@@ -1,8 +1,4 @@
 """ news api handler """
-import datetime
-
-import dateparser
-cuallsfshfabfhbahfafhafvhasfhgavwfvfhwbahf
 import requests
 
 from notifier.config import config_file
