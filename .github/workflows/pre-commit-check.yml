@@ -1,7 +1,7 @@
 on:
+  pull_request:
   push:
-    branches:
-      - 'develop'
+    branches: [main]
 jobs:
   pre-commit-check:
     runs-on: ubuntu-latest
@@ -9,26 +9,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: 3.8
       - name: Install requirements
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: Install pre-commit
+        run: pip install pre-commit
       - name: Run pre-commit
         run: pre-commit run --all-files
-      - name: Merge to main
-        uses: peter-evans/create-pull-request@v3
-        if: success()
-        with:
-          token: ${{ secrets.TOKEN_GIT }}
-          commit-message: Merge to main
-          title: Merge to main
-          body: Merge to main
-          branch: main
-          base: develop
-          delete-branch: false
-          labels: auto-merge
-
-
         
-
