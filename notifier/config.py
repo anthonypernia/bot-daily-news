@@ -9,7 +9,7 @@ class Config:
 
     def __init__(self):
         self.config_file_name = "config.yaml"
-        self.config = self.__read_config(self.config_file_name)
+        self.config = self.__read_config()
 
     def get(self, key: str) -> Optional[str]:
         """Get value from config
