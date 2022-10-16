@@ -15,6 +15,7 @@ class Config:
         """Get value from config
         Args:
             key (str): key of config
+
         Returns:
             Optional[str]: value of config
         """
