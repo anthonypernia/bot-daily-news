@@ -6,7 +6,6 @@ class NewsFormatter:
 
     def format_news_to_telegram_message(self, news: list) -> list:
         """Format news to telegram message.
-
         Args:
             news (list): list of news
         Returns:
@@ -21,10 +20,8 @@ class NewsFormatter:
 
     def format_content(self, article: dict) -> str:
         """Format content of news.
-
         Args:
             article (dict): article of news
-
         Returns:
             str: content of news
         """
@@ -34,10 +31,8 @@ class NewsFormatter:
 
     def format_url(self, article: dict) -> str:
         """Format url of news.
-
         Args:
             article (dict): article of news
-
         Returns:
             str: url of news
         """

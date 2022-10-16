@@ -1,10 +1,11 @@
 """ new objects for news_notifier """
+from time import sleep
+
 from notifier.bot.telegram_bot import TelegramBot
 from notifier.config import config_file
 from notifier.news_api_handler import NewsApiHandler
 from notifier.news_formatter import NewsFormatter
-from time import sleep
-from datetime import datetime
+
 
 class NewsNotificator:
     """news notificator object"""
@@ -16,7 +17,6 @@ class NewsNotificator:
         """
         self.bot = bot
         self.api_handler = NewsApiHandler()
-
 
     def get_news(self) -> list:
         """Get news from news api
@@ -44,7 +44,6 @@ class NewsNotificator:
         self.api_handler.set_args(args)
         print(self.api_handler.args)
 
-    
     def say_hi(self, update: dict) -> None:
         """Say hi to user
         Args:
@@ -68,24 +67,20 @@ class NewsNotificator:
             self.say_hi(update)
             self.news_process()
         elif message.strip() == config_file.get("COMMAND_HELP"):
-            self.bot.send_message_without_link_preview(self.get_help())
+            self.bot.send_message(self.get_help())
 
     def get_help(self) -> str:
         """Get help for bot
         Returns:
             str: help message
         """
-        help_message = f"""{config_file['COMMAND_HELP']} : Show this message
-        {config_file['COMMAND_ACTIVATE']} : Start news process
+        help_message = f"""{config_file.get('COMMAND_HELP')} : Show this message
+        {config_file.get('COMMAND_ACTIVATE')} : Start news process
         """
         return help_message
 
     def suscribe_updates(self) -> None:
-        """Suscribe to updates from telegram chat.
-
-        Args:
-            function_on_update (callable): function to execute on update from telegram chat
-        """
+        """Suscribe to updates from telegram bot"""
         polling = True
         sleep_time = 1
         last_id = 0

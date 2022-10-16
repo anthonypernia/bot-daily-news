@@ -1,6 +1,6 @@
 """ bot class telegram """
 import requests
-from notifier.config import config_file
+
 
 class TelegramBot:
     """Telegram bot class."""
@@ -23,20 +23,7 @@ class TelegramBot:
         """
         params = {"chat_id": self.chat_id, "text": message}
         url = f"{self.url}/sendMessage"
-        requests.post(url, params=params)
-
-    def send_message_without_link_preview(self, link: str) -> None:
-        """Send link without preview to chat.
-        Args:
-            link (str): link to send
-        """
-        params = {
-            "chat_id": self.chat_id,
-            "disable_web_page_preview": True,
-            "text": link,
-        }
-        url = f"{self.url}/sendMessage"
-        requests.post(url, params=params)  # type: ignore
+        requests.post(url, params=params, timeout=10)
 
     def get_last_update(self, last_id: int) -> dict:
         """Get last update from telegram chat.
@@ -48,6 +35,5 @@ class TelegramBot:
         """
         offset = last_id + 1
         url = f"{self.url}/getUpdates?offset={offset}"
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
         return response.json()["result"]
-
