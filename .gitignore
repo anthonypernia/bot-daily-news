@@ -7,6 +7,7 @@ config.yaml
 *.so
 .DS_Store
 *._*
+runner_helper.sh
 *.bak
 *.DS_Store
 *.swp
