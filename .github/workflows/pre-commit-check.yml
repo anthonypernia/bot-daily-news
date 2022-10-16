@@ -2,7 +2,6 @@ on:
   push:
     branches:
       - 'develop'
-
 jobs:
   pre-commit-check:
     runs-on: ubuntu-latest
