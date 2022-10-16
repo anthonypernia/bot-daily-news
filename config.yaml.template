@@ -1,0 +1,11 @@
+# bot settings 
+API_URL: "https://newsapi.org/v2/top-headlines"
+API_KEY: "YOUR_API_KEY"
+COUNTRY: "ar"
+CATEGORY: "general"
+LANGUAGE: "es"
+PAGE_SIZE: 3
+COMMAND_ACTIVATE: "/start"
+COMMAND_SETTINGS: "/settings"
+COMMAND_HELP: "/help"
+COMMAND_SETTINGS_DEFAULT: "/reset"

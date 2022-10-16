@@ -1,7 +1,7 @@
 """ news api handler """
 import requests
 
-from news_notifier.config import default_settings
+from notifier.config import config_file
 
 
 class NewsApiHandler:
@@ -9,12 +9,12 @@ class NewsApiHandler:
 
     def __init__(self) -> None:
         """Initialize object"""
-        self.url = default_settings["URL_NEWS"]
-        self.api_key = default_settings["API_KEY"]
-        self.country = default_settings["COUNTRY"]
-        self.page_size = default_settings["PAGE_SIZE"]
-        self.language = default_settings["LANGUAGE"]
-        self.category = default_settings["CATEGORY"]
+        self.url = config_file.get("API_URL")
+        self.api_key = config_file.get("API_KEY")
+        self.country = config_file.get("COUNTRY")
+        self.page_size = config_file.get("PAGE_SIZE")
+        self.language = config_file.get("LANGUAGE")
+        self.category = config_file.get("CATEGORY")
         self.set_default_args()
 
     def set_default_args(self) -> None:

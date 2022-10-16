@@ -15,7 +15,7 @@ class NewsFormatter:
         article_list = []
         for article in news:
             article_list.append(
-                f"{self.format_url(article)}\n{self.format_content(article)}\n\n"
+                f"{self.format_content(article)}\n{self.format_url(article)}\n\n"
             )
         return article_list
 

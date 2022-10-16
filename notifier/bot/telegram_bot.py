@@ -1,8 +1,6 @@
 """ bot class telegram """
-from time import sleep
-
 import requests
-
+from notifier.config import config_file
 
 class TelegramBot:
     """Telegram bot class."""
@@ -53,19 +51,3 @@ class TelegramBot:
         response = requests.get(url)
         return response.json()["result"]
 
-    def suscribe_updates(self, function_on_update) -> None:
-        """Suscribe to updates from telegram chat.
-
-        Args:
-            function_on_update (callable): function to execute on update from telegram chat
-        """
-        print(type(function_on_update))
-        polling = True
-        sleep_time = 2
-        last_id = 0
-        while polling:
-            result_update = self.get_last_update(last_id)
-            if result_update:
-                last_id = result_update[-1]["update_id"]
-                function_on_update(result_update[-1])
-            sleep(sleep_time)

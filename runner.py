@@ -1,20 +1,20 @@
 """ runner """
 import argparse
+from ast import arg
 
-from news_notifier.bot.telegram_bot import TelegramBot
-from news_notifier.news_notificator import NewsNotificator
+from notifier.bot.telegram_bot import TelegramBot
+from notifier.news_notificator import NewsNotificator
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "--execution-type",
-    type=str,
+    "--handle-messages",
+    type=int,
     required=False,
-    default="telegram",
-    help="Type of execution could be 'handler' to keep pending of message or default",
+    default=0,
+    help="Type of execution could be '1' to keep pending of message or 0 to send news",
 )
 parser.add_argument("--bot-token", type=str, required=True, help="Token of bot")
 parser.add_argument("--chat-id", type=str, required=True, help="Id of chat")
-parser.add_argument("--message", type=str, required=False, help="Message to send")
 
 
 def run(args: argparse.Namespace):
@@ -24,8 +24,8 @@ def run(args: argparse.Namespace):
     """
     bot = TelegramBot(args.bot_token, args.chat_id)
     news_notificator = NewsNotificator(bot)
-    if args.execution_type == "handler":
-        bot.suscribe_updates(news_notificator.message_handler)
+    if args.handle_messages in ['1', 1]:
+        news_notificator.suscribe_updates()
     else:
         news_notificator.news_process()
 
