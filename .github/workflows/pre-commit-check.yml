@@ -1,9 +1,9 @@
 name: pre-commit
-
+###if pre-commit not fail then merge
 on:
-  pull_request:
   push:
-    branches: [main]
+    branches:
+      - 'develop'
 
 jobs:
   pre-commit:
@@ -18,3 +18,19 @@ jobs:
       run: |
         pip install -r requirements.txt
     - uses: pre-commit/action@v3.0.0
+    - name: Run pre-commit
+      run: |
+        pre-commit run --all-files
+    - name: Merge
+      uses:
+        actions/checkout@v2
+      with:
+        ref: develop
+        token: ${{ secrets.TOKEN_GIT }}
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git merge --no-ff ${{ github.event.pull_request.head.sha }}
+        git push
+
+
