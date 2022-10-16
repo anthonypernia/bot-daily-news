@@ -1,7 +1,9 @@
 """ news api handler """
-import requests
-import dateparser
 import datetime
+
+import dateparser
+import requests
+
 from notifier.config import config_file
 
 
