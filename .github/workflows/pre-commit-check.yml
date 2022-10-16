@@ -1,36 +1,20 @@
-name: pre-commit
-###if pre-commit not fail then merge
+#run pre-commit checks on pull requests if pre-commit ends ok, the pull request is merged
 on:
   push:
     branches:
       - 'develop'
 
 jobs:
-  pre-commit:
+  pre-commit-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
-    - name: Install pre-commit
-      run: |
-        pip install pre-commit
-    - name: Install requirements
-      run: |
-        pip install -r requirements.txt
-    - uses: pre-commit/action@v3.0.0
-    - name: Run pre-commit
-      run: |
-        pre-commit run --all-files
-    - name: Merge
-      uses:
-        actions/checkout@v2
-      with:
-        ref: develop
-        token: ${{ secrets.TOKEN_GIT }}
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git merge --no-ff ${{ github.event.pull_request.head.sha }}
-        git push
-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install pre-commit
+        run: pip install pre-commit
+      - name: Run pre-commit
+        run: pre-commit run --all-files
+      
 
