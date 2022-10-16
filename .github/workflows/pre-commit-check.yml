@@ -27,8 +27,8 @@ jobs:
           title: Merge to main
           body: Merge to main
           branch: main
-          base: main
-          delete-branch: true
+          base: develop
+          delete-branch: false
           labels: auto-merge
 
 
